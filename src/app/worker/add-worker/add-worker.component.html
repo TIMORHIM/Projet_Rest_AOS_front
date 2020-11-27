@@ -1,0 +1,435 @@
+<script src="add-worker.component.ts"></script>
+<app-nav [isLoggedIn]="false">
+  <div class="contain">
+  <div id="accordion" style="background-color: transparent">
+    <dx-accordion
+      #accordion
+      [dataSource]="titles"
+      [collapsible]="true"
+      [multiple]="false"
+      [animationDuration]="500"
+      [selectedItems]="[titles[0]]">
+      <div *dxTemplate="let company of 'title'" class="titleImg" >
+        <img src="{{company.icon}}" style="height: 62px;">
+        <div class="titlePrincipale">{{company.title}}</div>
+        <!-- <img src="{{company.title}}" alt=""> -->
+      </div>
+
+      <div *dxTemplate="let company of 'item'">
+        <!---->
+        <dx-accordion *ngIf="company.id ==1"
+                      #accordion
+                      [dataSource]="titles2"
+                      [collapsible]="true"
+                      [multiple]="true"
+                      [animationDuration]="500"
+                      [selectedItems]="[titles2[0]]">
+          <div *dxTemplate="let company of 'title'" class="titleImg">
+            <img src="../../assets/icons/info.png" alt="">
+            <div class="title">{{company.title}}</div>
+          </div>
+          <div *dxTemplate="let company of 'item'">
+
+            <!-- BLOC 01 INFORAMATIONNS PERSONNELLES -->
+
+            <div *ngIf="company.id ==1">
+              <div class="widget-container">
+                <dx-form style="height: 90px;"
+                         [formData]="worker"
+                         [readOnly]="false"
+                         [showColonAfterLabel]="false"
+                         [labelLocation]="'top'"
+                         [minColWidth]="100"
+                         [showValidationSummary]="true"
+                         [colCount]="6">
+                  <dxi-item dataField="codePerson" [editorOptions]="{disabled : true, value: matricule}">
+                    <dxo-label text="Matricule"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="stateWorker" caption="Etat" [editorOptions]="{disabled : true, value:'Brouillon'}">
+                    <dxo-label for="lab" text="Etat"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="userNamePerson" caption="Nom d'usage" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Nom d'usage"></dxo-label>
+                    <dxi-validation-rule
+                      type="required"
+                      message="Nom d'usage est requis">
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="lastname" caption="Nom" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Nom"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="firstNamePerson" caption="Prénom principal" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Prénom principal"></dxo-label>
+                    <dxi-validation-rule
+                      type="required"
+                      message="Prénom principal est requis">
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="complementaryNamesPerson" caption="Prénoms complémentaires" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Prénoms complémentaires"></dxo-label>
+                  </dxi-item>
+
+                </dx-form>
+              </div>
+            </div>
+
+            <!-- BLOC 02 INFORMATIONS COMPLEMENTAIRES -->
+
+            <div *ngIf="company.id ==2">
+              <div class="widget-container">
+                <dx-form
+                  [formData]="worker"
+                  [readOnly]="false"
+                  [showColonAfterLabel]="false"
+                  [labelLocation]="'top'"
+                  [minColWidth]="100"
+                  [colCount]="4">
+                  <dxi-item dataField="sexPerson" editorType="dxSelectBox" [editorOptions]="{ items: sex }">
+                    <dxo-label text="Sexe"></dxo-label>
+                    <dxi-validation-rule
+                      type="required"
+                      message="Sexe est requis">
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="birthDatePerson"  editorType="dxDateBox" displayFormat="dd/MM/yyyy"
+                            type="date" [editorOptions]="{ value: null, width: '100%' }">
+                    <dxo-label text="Date de naissance (31/12/1990) "></dxo-label>
+                    <dxi-validation-rule
+                      type="compare"
+                      comparisonType="<"
+                      [comparisonTarget] ="todayDate"
+                      message="La date de naissance doit etre inférieure à la date du jour">
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="departmentOfBirthWorker" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Département de naissance"></dxo-label>
+                    <dxi-validation-rule
+                      type="stringLength"
+                      [max]="2"
+                      [min]="2"
+                      message="Le departement doit etre en 2 chiffres "
+                    >
+                    </dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="numeric"
+                      message="Le departement doit etre des chiffres "
+                    >
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="nativeCountryWorker" [editorOptions]="{disabled : false,value:'France'}">
+                    <dxo-label text="Pays de naissance"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="placeOfBirthWorker" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Lieu de naissance"></dxo-label>
+                  </dxi-item>
+                  <!--<dxi-item dataField="nationalityWorker" editorType="dxSelectBox" [editorOptions]="{items : nationalit}">
+                    <dxo-label text="Nationalité "></dxo-label>
+                  </dxi-item>-->
+                  <dxi-item dataField="socialSecurityNumberWorker" [editorOptions]="{disabled : false}">
+                    <dxo-label text="N° de SS"></dxo-label>
+                    <dxi-validation-rule
+                      type="stringLength"
+                      [max]="15"
+                      [min]="15"
+                      message="Le Numero doit etre en 15 caractéres "
+                    >
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item  dataField="familySituationWorker" editorType="dxSelectBox" [editorOptions]="{items : situationFamil, value : ''}">
+                    <dxo-label text="Situation familiale"></dxo-label>
+                  </dxi-item>
+                </dx-form>
+                <div class="formLookup">
+                  <div style="font-weight: bold;margin-bottom: 5px">Nationalité</div>
+                  <dx-lookup
+                    [items]="nationalit"
+                    [showPopupTitle]="false"
+                    (onValueChanged)="nationalityChanged($event)">
+
+                  </dx-lookup>
+                </div>
+
+                <dx-form [formData]="worker"
+                         [readOnly]="false"
+                         [showColonAfterLabel]="false"
+                         [labelLocation]="'top'"
+                         [minColWidth]="100"
+                         [colCount]="4">
+                  <dxi-item dataField="numberOfResidenceCardWorker" [visible]="false" [editorOptions]="{disabled : false,visible:false}">
+                    <dxo-label text="N° carte de séjour "></dxo-label>
+                  </dxi-item>
+                  <dxi-item style="font-weight: bold;"  itemType="group"  caption="Autre nationalité"  [colCount]="2" [colSpan]="3" *ngIf="selectNationality" >
+                    <dxi-item dataField="otherWorker" [editorOptions]="{disabled : false}">
+                      <dxo-label text="Nationalité"></dxo-label>
+                    </dxi-item>
+                    <dxi-item dataField="numberOfResidenceCardWorker" [editorOptions]="{disabled : false}">
+                      <dxo-label text="N° carte de séjour "></dxo-label>
+                    </dxi-item>
+                    <dxi-item dataField="expirationDateResidenceCardWorker" editorType="dxDateBox" [editorOptions]="{ width: '100%' }">
+                      <dxo-label text="Date expiration carte de séjour (31/12/1990) "></dxo-label>
+                    </dxi-item>
+                    <dxi-item dataField="residenceCardIssuedByWorker" [editorOptions]="{disabled : false}">
+                      <dxo-label text="Carte de séjour délivré par "></dxo-label>
+                    </dxi-item>
+                  </dxi-item>
+                </dx-form>
+              </div>
+            </div>
+
+            <!-- BLOC 03 COORDONNEES -->
+
+            <div *ngIf="company.id ==3">
+              <div class="widget-container">
+                <dx-form style="height: 90px;"
+                         [formData]="adress"
+                         [readOnly]="false"
+                         [showColonAfterLabel]="false"
+                         [labelLocation]="'top'"
+                         [minColWidth]="100"
+                         [colCount]="6">
+
+                  <dxi-item dataField="codeAddress" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Adresse"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="complement1Address" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Complément 1"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="complement2Address" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Complément 2"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="countryAddress" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Pays"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="postalCodeAddress" [editorOptions]="{disabled : false}">
+                    <dxi-validation-rule
+                      type="custom"
+                      [validationCallback]="codePostalCustom"
+                      message="Le code postal doit etre de 5 caractéres "
+                    >
+                    </dxi-validation-rule>
+                    <dxo-label text="Code Postal"></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="cityAddress" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Ville "></dxo-label>
+                  </dxi-item>
+
+                </dx-form>
+              </div>
+            </div>
+
+            <!-- BLOC 04 CONTACT-->
+            <div *ngIf="company.id ==4">
+              <div class="widget-container">
+                <dx-form
+                  [formData]="worker"
+                  [readOnly]="false"
+                  [showColonAfterLabel]="false"
+                  [labelLocation]="'top'"
+                  [minColWidth]="100"
+                  [colCount]="3">
+
+                  <dxi-item dataField="personalPhonePortablePerson" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Téléphone Perso - Portable  (06.12.13.14.15) "></dxo-label>
+                  </dxi-item>
+                  <dxi-item dataField="personalMailPerson" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Mail Perso "></dxo-label>
+                  </dxi-item>
+                </dx-form>
+                <br>
+              </div>
+            </div>
+
+            <!-- BLOC 06 COORDONNEES BANCAIRE -->
+            <div *ngIf="company.id ==6">
+              <div class="widget-container">
+                <dx-form
+                  [formData]="bankDetails"
+                  [readOnly]="false"
+                  [showColonAfterLabel]="false"
+                  [labelLocation]="'top'"
+                  [minColWidth]="100"
+                  [colCount]="3">
+
+                  <dxi-item dataField="ibanbankDetails"
+                  [editorOptions]="{
+                    disabled : false,
+                    mask: 'AAAA-AAAA-AAAA-AAAA-AAAA-AAAA-AAAA-AAA-AAA',
+
+                    useMaskedValue: true,
+                    maskInvalidMessage: 'IBAN invalide'
+                }"
+                  >
+                    <dxo-label text="IBAN"></dxo-label>
+                    <dxi-validation-rule
+                      type="stringLength"
+                      [max]="42"
+                      [min]="42"
+                      message="IBAN est composé de 34 caractéres "
+                    >
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="bicbankDetails" [editorOptions]="{
+                    disabled : false,
+                    mask: 'AAAA-AA-AA-AAA',
+
+                    useMaskedValue: true,
+                    maskInvalidMessage: 'IBAN invalide'
+                }">
+                    <dxo-label text="BIC ou SWIFT"></dxo-label>
+                    <dxi-validation-rule
+                      type="stringLength"
+                      [max]="14"
+                      [min]="11"
+                      message="BIC ou SWIFT doit etre en 11 caractéres "
+                    >
+                    </dxi-validation-rule>
+                  </dxi-item>
+                  <dxi-item dataField="titleOfAccountBankDetails" [editorOptions]="{disabled : false}">
+                    <dxo-label text="Intitulé du compte (Nom & Prénom)"></dxo-label>
+                  </dxi-item>
+                </dx-form>
+
+              </div>
+            </div>
+            <br>
+          </div>
+        </dx-accordion>
+
+        <!-- Button AJOUTER EMPLOYE -->
+        <dx-button *ngIf="company.id ==6545" style="margin-top: 20px; float: right;"
+                   icon="fieldchooser"
+                   type="default"
+                   horizontalAlignment="center"
+                   text="Ajouter employé(e)"
+                   (onClick)="ajoutEmployee()">
+        </dx-button>
+
+        <!-- BLOC IV CONTRAT -->
+        <dx-data-grid *ngIf="company.id == 4"
+                      [dataSource]="employmentContract"
+                      [showBorders]="true"
+
+        >
+          <dxo-editing
+            mode="form"
+            [allowUpdating]="true"
+            [allowAdding]="true"
+            [allowDeleting]="true"
+          >
+            <dxo-form
+              [labelLocation]="'top'"
+              [alignItemLabels]="'left'"
+              [showColonAfterLabel] = 'false'
+            >
+              <dxi-item dataField="formContract" [editorOptions]="{disabled : true,value:'Contrat'}">
+                <dxo-label text="Contrat\Avenant "></dxo-label>
+              </dxi-item>
+              <dxi-item alignment="right">
+              </dxi-item>
+
+              <dxi-item dataField="stateEmploymentContract"
+                        [editorOptions]="{disabled : true, value: 'Validation à demander'}">
+                <dxo-label text="Statut du contrat "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="statusEmploymentContract" [editorOptions]="{disabled : false, value: 'Brouillon'}">
+                <dxo-label text="Etat Contrat "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="typeEmploymentContract" [editorOptions]="{disabled : false}">
+                <dxo-label text="Type Contrat "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="workTimeEmploymentContract" [editorOptions]="{disabled : false}">
+                <dxo-label text="Temps de travail "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="startDateEmploymentContract" editorType="dxDateBox" displayFormat="dd/MM/yyyy"
+                        type="date" [editorOptions]="{ value: null, width: '100%' }">
+                <dxo-label text="Date Début de contrat (30/12/2019) ">
+                </dxo-label>
+              </dxi-item>
+              <dxi-item dataField="endDateEmploymentContract" editorType="dxDateBox" displayFormat="dd/MM/yyyy"
+                        type="date" [editorOptions]="{ value: null, width: '100%' }">
+                <dxo-label text="Date de fin de contrat (30/12/2019) "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="businessCard" [editorOptions]="{disabled : false}">
+                <dxo-label text="Fiche métier "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="pointsSeniorityEmploymentContract" [editorOptions]="{disabled : false}">
+                <dxo-label text="Points ancienneté "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="complementaryPointsEmploymentContract" [editorOptions]="{disabled : false}">
+                <dxo-label text="Points Complémetaires "></dxo-label>
+              </dxi-item>
+              <dxi-item dataField="pointBase" [editorOptions]="{disabled : false}">
+                <dxo-label text="Points de base "></dxo-label>
+              </dxi-item>
+
+              <dxi-item dataField="noteEmploymentContract" [editorOptions]="{disabled : false, height: 70}"
+                        editorType="dxTextArea" [colSpan]="2">
+                <dxo-label text="Note "></dxo-label>
+               <!--  <dxi-validation-rule
+                  type="stringLength"
+                  [max]="500"
+                  [min]="10"
+                  message="Remplir note"
+                >
+                </dxi-validation-rule> -->
+
+              </dxi-item>
+            </dxo-form>
+          </dxo-editing>
+
+
+          <dxi-column dataField="stateEmploymentContract" caption="Etat Contrat ">
+            <dxo-lookup [dataSource]="stateEmploymentContract" valueExpr="Brouillon">
+            </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="formContract" caption="Forme Contrat ">
+            <dxo-lookup  [dataSource]="contrat"  valueExpr="Contrat" >
+            </dxo-lookup>
+          </dxi-column>
+
+          <dxi-column dataField="statusEmploymentContract" caption="Status de contrat ">
+            <dxo-lookup [dataSource]="statusEmploymentContract">
+            </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="noteEmploymentContract" caption="Note " [visible]="false"></dxi-column>
+
+          <dxi-column dataField="typeEmploymentContract" caption="Type Contrat ">
+            <dxo-lookup [dataSource]="typeEmploymentContract">
+            </dxo-lookup>
+          </dxi-column>
+
+          <dxi-column dataField="workTimeEmploymentContract" caption="Temps de travail ">
+            <dxo-lookup [dataSource]="workTimeEmploymentContract">
+            </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="startDateEmploymentContract" dataType="date"
+                      caption="Date Début de contrat "></dxi-column>
+          <dxi-column dataField="endDateEmploymentContract" dataType="date"
+                      caption="Date de fin de contrat "></dxi-column>
+
+          <dxi-column dataField="annexEmploymentContract" caption="Annexe Contrat" [visible]="false">
+            <dxo-lookup [dataSource]="annexEmploymentContract">
+            </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="pointsSeniorityEmploymentContract" caption="Point de séniorité"
+                      [visible]="false"></dxi-column>
+          <dxi-column dataField="complementaryPointsEmploymentContract" caption="Point Complémetaire du contrat "
+                      [visible]="false"></dxi-column>
+
+          <dxi-column dataField="pointBase" dataType="numeric" caption="Points de base " [visible]="false"></dxi-column>
+        </dx-data-grid>
+
+      </div>
+
+    </dx-accordion>
+    <dx-button  style="margin-top: 20px; float: right;"
+                icon="fieldchooser"
+                type="default"
+                horizontalAlignment="center"
+                useSubmitBehavior="true"
+                text="Ajouter employé(e)"
+                (onClick)="ajoutEmployee()">
+    </dx-button>
+  </div>
+</div>
+</app-nav>

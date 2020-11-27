@@ -1,0 +1,105 @@
+/* .container{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.container .mat-drawer{
+
+    min-width: 200px;
+}
+.container .mat-drawer .mat-button{
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
+mat-drawer-container{ overflow: visible; }
+ */
+::ng-deep .mat-nav-list .mat-list-item .mat-list-item-content{
+  padding: 35px 7px!important;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-sidenav-container {
+  flex: 1;
+}
+
+.example-sidenav{
+  color: #4f657f;
+}
+
+.mat-list-item{
+  color: black;
+  opacity: 0.8;
+}
+
+.mat-icon{
+  cursor: pointer;
+}
+
+.mat-drawer{
+  opacity: 0.9;
+  background:#e2e2e2;
+}
+
+.mat-toolbar {
+  opacity: 0.9;
+  background: #8eb4e3;
+  color: white;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #efefef;
+  opacity: 0.9;
+}
+
+.example-toolbar {
+    z-index: 2;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+  .special{
+  padding-top: 1px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  font-size: 16px;
+  font-weight: bolder;
+  font-family: Times New Roman, "Arial Black", Times, "Arial", serif;
+  flex: 1;
+  }
+  .row_module_index{
+  float: left
+  }
+
+.btna{
+  border-radius: 1rem;
+  padding: 3px;
+  margin-right: 15px;
+  height: 40px;
+  width: 36px;
+  cursor: pointer;
+}

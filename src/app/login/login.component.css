@@ -1,0 +1,58 @@
+input[type=text], input[type=password] {
+  width: 84%;
+  padding: 5px 20px;
+  margin: 8px 0;
+  font-size: 20px;
+}
+
+.intro-header {
+    height: unset !important;
+  }
+  .top-nav-collapse {
+    background-color: #78909c !important;
+  }
+  .view {
+    height: 100vh !important;
+  }
+  .navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+  }
+  @media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+      background: #78909c !important;
+    }
+  }
+  h1 {
+    letter-spacing: 8px;
+  }
+  h5 {
+    letter-spacing: 3px;
+  }
+  .hr-light {
+    border-top: 3px solid #4F657F;
+    width: 100px;
+
+  }
+  @media (max-width: 740px) {
+    .full-height,
+    .full-height body,
+    .full-height header,
+    .full-height header .view {
+      height: 700px;
+    }
+  }
+  .md-form .prefix {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  .md-form label {
+    text-align: right;
+    position: relative;
+    margin-top:1rem;
+    color: #4F657F;
+   right:0;
+    font-size: 23px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: normal;
+  }
+

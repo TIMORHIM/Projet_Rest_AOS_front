@@ -1,0 +1,113 @@
+<app-nav [isLoggedIn]="false"></app-nav>
+<!--
+
+<div *ngIf="isLoggedIn; else loggedOut">
+  Logged in as {{roles}}.
+  <button class="btn btn-secondary" (click)="logout()">Logout</button>
+</div>
+
+<ng-template #loggedOut  >
+
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="username">Identifiant</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+          required />
+        <div *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+          required minlength="6" />
+        <div *ngIf="f.submitted && password.invalid">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary">Login</button>
+        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+          Login failed: {{errorMessage}}
+        </div>
+      </div>
+    </form>
+    <hr />
+    <p>Don't have an account?</p>
+    <a href="signup" class="btn btn-success">Sign Up</a>
+
+</ng-template>
+
+ -->
+<div  *ngIf="isLoggedIn">
+  <!-- Logged in as {{roles}}.  -->
+  <ng-content></ng-content>
+
+</div>
+<header *ngIf="!isLoggedIn" class="intro-header">
+
+  <!--Navbar-->
+
+
+  <!-- Intro Section -->
+  <div class="view jarallax"  style="background-image: url(/assets/img/fond3.jpg); background-repeat: no-repeat;background-size: cover">
+
+        <div class="full-bg-img mask rgba-gradient">
+          <div class="container flex-center">
+        <div class="d-flex align-items-center ">
+          <div class="row flex-center   " style = "background-color: black; border-radius: 3em; padding: 73px;">
+            <div class="col-md-10 text-center text-md-center margins">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="md-form">
+                      <img src="/assets/img/connectezvous.png" alt="" class="img-responsive">
+                      </div>
+                    <div class="md-form">
+                      <label for="username">Identifiant</label>
+
+                      <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+                        required mdbInput />
+                      <div *ngIf="f.submitted && username.invalid">
+                        <div *ngIf="username.errors.required">Nom d'utilisateur est nécessaire</div>
+                      </div>
+                    </div>
+                    <div class="md-form">
+                      <label for="password">Mot de passe</label>
+                      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+                        required minlength="6" mdbInput/>
+                      <div *ngIf="f.submitted && password.invalid">
+                        <div *ngIf="password.errors.required">Mot de passe requis</div>
+                        <div *ngIf="password.errors.minlength">Le mot de passe doit être au moins de 6 caractères</div>
+                      </div>
+                    </div>
+                    <div  class="md-form">
+                        <input   type="image"  src="/assets/img/Connecter.png" alt="" class="img-responsive" >
+                      <!-- <button class="btn btn-primary" routerLink="/admin">Login</button> -->
+
+                      <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+                        Login failed: {{errorMessage}}
+                      </div>
+                    </div>
+                  </form>
+
+            </div>
+
+
+          </div>
+
+          </div>
+          </div>
+        </div>
+
+
+         <!--
+            <div *ngIf="!authority" class="offset-md-9 col-md-3 fixed-bottom align-items-end d-flex justify-content-end " >
+                <a  href="http://www.ewalia.com" onclick="window.open(this.href); return false;"><img  src="/assets/img/logoewalia.png" target="_blank"  alt="" class="img-responsive" > </a>
+            </div>
+          -->
+
+  </div>
+  <div >
+
+  </div>
+</header>

@@ -1,0 +1,226 @@
+::ng-deep .dx-icon {
+  width:26px;
+  height: 26px;
+}
+.btna{
+  border-radius: 1rem;
+padding: 3px;
+height: 40px;
+}
+
+::ng-deep .dx-searchbox .dx-icon-search{
+  content: url('/assets/icons/loupe.png') !important;
+  width: 40px;
+  height: 40px;
+}
+.contain{
+  border-radius: 2rem;
+  margin: 5%;
+  padding: 40px;
+  margin-top: 20px;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 9px 0 rgba(0, 0, 0, 0.19);
+}
+
+::ng-deep  .dx-progressbar-container {
+
+  height: 30px;
+  border: 1px solid #ddd;
+  background-color: #8EB4E3;
+  border-radius:8px;
+
+
+}
+.dx-fieldset .dx-field-value {
+  margin: 0;
+  margin-top: -18px;
+}
+::ng-deep .dx-progressbar-wrapper {
+  height: 4px;
+}
+::ng-deep   .dx-progressbar-range {
+  position: relative;
+  border: 1px solid #a2cbff;
+  background-color: #4F657F;
+  margin-top: -1px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  border-radius:8px;
+
+}
+::ng-deep .dx-accordion-item {
+  border: 0px solid transparent;
+}
+
+::ng-deep .dx-accordion-item-title .dx-icon {
+  width: 26px;
+  height: 26px;
+}
+::ng-deep .dx-progressbar-status {
+  position: relative;
+  top: -24px;
+  left: 56px;
+  width: auto;
+  height: 20px;
+  color: #ffff;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+::ng-deep #accordion h1 {
+  font-size: 20px;
+}
+
+::ng-deep .dx-datagrid-nowrap .dx-header-row > td > .dx-datagrid-text-content {
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+::ng-deep .dx-datagrid-content .dx-datagrid-table .dx-row > td, .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td{
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+::ng-deep #accordion h1,
+::ng-deep #accordion p {
+  margin: 0;
+}
+
+::ng-deep .dx-theme-material #accordion .dx-accordion-item-opened .dx-accordion-item-title {
+  display: flex;
+}
+
+::ng-deep .dx-theme-material #accordion .dx-accordion-item-opened h1 {
+  align-self: center;
+}
+
+::ng-deep .dx-fieldset{
+  margin: 5px 20px !important;
+  padding: 0;
+}
+
+
+::ng-deep .options,
+::ng-deep .selected-data {
+  padding: 20px;
+  background-color: rgba(191, 191, 191, 0.15);
+  margin-top: 20px;
+}
+::ng-deep .selected-data {
+  position: relative;
+  height: 36px;
+}
+::ng-deep .selected-data > .caption {
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 115%;
+}
+::ng-deep .selected-data > .dx-widget {
+  position: absolute;
+  left: 140px;
+  right: 20px;
+  top: 20px;
+}
+::ng-deep .options > .caption {
+  font-weight: 500;
+  font-size: 18px;
+}
+::ng-deep .option {
+  margin-top: 10px;
+}
+
+::ng-deep .dx-accordion{
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 9px 0 rgba(0, 0, 0, 0.19);
+}
+
+::ng-deep .dx-datagrid-headers
+{
+  background-color:#4F657F;
+  color:white;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  padding-top: 10px;
+  -ms-text-align-last: left;
+  text-align:left !important;
+
+}
+
+::ng-deep .dx-datagrid .dx-column-lines> td
+{
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+}
+
+.titleImg > img{
+  float: left;
+}
+::ng-deep #workerstable{
+  margin: 5px;
+}
+.title{
+  overflow: hidden;
+  background-color: #8EB4E3;
+  margin-top: 10px;
+  padding-top: 3px;
+  height: 30px;
+  padding-left: 20px;
+  border-radius: 3rem;
+  margin-left: 20px;
+  color: white;
+  font-family: "Helvetica";
+  font-size: 18px;
+}
+::ng-deep .dx-datagrid-headers
+{
+  color:white;
+  border-radius: 1rem;
+  padding-top: 0px;
+  -ms-text-align-last: right;
+  text-align:center;
+}
+::ng-deep .dx-datagrid .dx-column-lines>td
+{
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #ffffff !important;
+}
+
+::ng-deep  .dx-datagrid-headers .dx-datagrid-table .dx-row > td{
+  border-bottom: 0px;
+  text-align: left !important;
+}
+::ng-deep .dx-datagrid-text-content{
+  text-align: center;
+}
+::ng-deep .dx-datagrid-rowsview .dx-row {
+  border-top: 1px solid transparent;
+  border-bottom: 2px solid #ddd;
+}
+::ng-deep .dx-datagrid-content .dx-datagrid-table .dx-row > td:first-child{
+  padding-right: 7px !important;
+}
+
+::ng-deep .dx-datagrid-action .dx-cell-focus-disabled{
+  text-align: center;
+}
+
+.titlePrincipale{
+  height: 48px;
+  overflow: hidden;
+  background-color: #4F657F;
+  margin-top: 7px;
+
+  padding-top: 11px;
+  padding-left: 20px;
+  border-radius: 3rem;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  color: white;
+  font-family: "Helvetica";
+  font-size: 18px;
+}
+::ng-deep .dx-datagrid .dx-data-row > td.bullet {
+  padding-top: 0;
+  padding-bottom: 0;
+}

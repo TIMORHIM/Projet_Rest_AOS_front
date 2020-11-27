@@ -1,0 +1,96 @@
+<app-nav [isLoggedIn]="false">
+  <div class="contain">
+    <div id="accordion" style="background-color: transparent">
+      <dx-accordion
+        #accordion
+        [dataSource]="titles"
+        [collapsible]="false"
+        [multiple]="true"
+        [animationDuration]="1000"
+        [selectedItems]="[titles[0]]">
+        <div *dxTemplate="let company of 'title'" class="titleImg" >
+          <img src="{{company.icon}}" style="height: 62px;">
+          <div class="titlePrincipale">{{company.title}}</div>
+          <!-- <img src="{{company.title}}" alt=""> -->
+        </div>
+        <div *dxTemplate="let company of 'item'">
+          <div class="dx-fieldset" *ngIf="company.id == 1">
+            <div class="dx-field" >
+              <div class="dx-field-value">
+                <a style="float: right;margin-top: 5px;padding-left: 15px;" routerLink="/addWorker"><img title="Ajouter" src="../../../assets/icons/add.png" class="btna btncr"> </a>
+                <a style="float: right;margin-top: 5px;padding-left: 15px;" routerLink="/list-iban-by-structure"><img title="Liste IBAN" src="../../../assets/icons/iban.png" class="btna btncr"> </a>
+                <a style="float: right;margin-top: 5px;padding-left: 15px;" routerLink="/list-training"><img title="Liste Formations" src="../../../assets/icons/training.png" class="btna btncr"> </a>
+                <a style="float: right;margin-top: 5px;padding-left: 15px;" routerLink="/list-workers-by-structure"><img title="Liste employés" src="../../../assets/icons/workers.png" class="btna btncr"> </a>
+              </div>
+            </div>
+          </div>
+          <div #personne>
+            <dx-data-grid id="workerstable" *ngIf="company.id == 1"
+                          [dataSource]="workers"
+                          [showBorders]="true"
+                          (onRowRemoved)="deleteWorker($event)"
+                          (onInitialized)="initWorker($event)"
+                          style="font-size: 14px !important; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif ;"
+            >
+              <dxo-search-panel
+                [visible]="true"
+                [width]="240"
+                placeholder="Recherche..."></dxo-search-panel>
+              <dxo-paging [pageSize]="30"></dxo-paging>
+              <dxo-pager
+                [showPageSizeSelector]="true"
+                [allowedPageSizes]="[30, 60, 90]"
+                [showInfo]="true">
+              </dxo-pager>
+              <dxo-editing
+                mode="popup"
+                [allowDeleting]="true"
+                [useIcons]="true"
+              >
+              </dxo-editing>
+
+              <dxi-column dataField="statusP" dataType="number" format="percent" caption=" " [width]="50" cellTemplate="statusOptionTemplate"></dxi-column>
+              <dxi-column dataField="userNamePerson" [width]="180" caption="Nom"></dxi-column>
+              <dxi-column dataField="firstNamePerson" [width]="180" caption="Prénom"></dxi-column>
+              <dxi-column dataField="statusP" style="text-align: left !important;" caption="Statut" dataType="number" format="percent" cellTemplate="statusbarTemplate"></dxi-column>
+              <dxi-column dataField="Startdate" [width]="150"  caption="Date de Debut "></dxi-column>
+              <dxi-column dataField="enddate" [width]="150" caption="Date de Fin "></dxi-column>
+              <dxi-column dataField="type" caption="Type " [width]="60"></dxi-column>
+              <dxi-column type="buttons">
+                <dxi-button [onClick]="edit" hint="Editer" icon="../../assets/icons/edit.png" ></dxi-button>
+                <dxi-button  name="delete" hint="Supprimer" icon="../../assets/icons/delete.png"></dxi-button>
+              </dxi-column>
+
+              <div *dxTemplate="let d of 'statusbarTemplate'">
+                <dx-progress-bar
+                  #progressBar
+                  id="progress-bar-status"
+                  width="90%"
+                  [hint]="d.value"
+                  [class.complete]="progressBar.value == 100"
+                  [min]="0"
+                  [max]="100"
+                  [statusFormat]="format"
+                  height="80%"
+                  showStatus="true"
+                  [value]="d.value"
+                >
+                </dx-progress-bar>
+              </div>
+
+              <div *dxTemplate="let d of 'statusOptionTemplate'">
+                <img *ngIf="d.value  == 60 || d.value == 5 "  src="../../assets/icons/actif.png" class="btncr btna" [alt]="d.value" title="Actif">
+                <img *ngIf="d.value == 100  " src="../../assets/icons/inactif.png" class="btncr btna" title="Inatif"  >
+                <img *ngIf="d.value == 20  || d.value == 0 "  src="../../assets/icons/brouillon.png" class="btncr btna" [alt]="d.value" title="Brouillon">
+              </div>
+
+            </dx-data-grid>
+          </div>
+        </div>
+
+
+
+      </dx-accordion>
+    </div>
+  </div>
+</app-nav>

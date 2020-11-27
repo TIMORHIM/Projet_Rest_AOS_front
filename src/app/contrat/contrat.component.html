@@ -1,0 +1,83 @@
+<!-- BLOC V Visites Médicales -->
+<dx-data-grid
+              [dataSource]="employmentContract"
+              [showBorders]="true">
+  <dxo-editing
+    mode="form"
+    [allowUpdating]="true"
+    [allowAdding]="true"
+    [allowDeleting]="true"
+  >
+    <dxo-form>
+   
+      <dxi-item dataField="code_employment_contract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Code Contrat Emploi"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="stateEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Etat Contrat"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="statusEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Status de contrat"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="noteEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Note Emploi"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="typeEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Type Contrat"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="workTimeEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Temps de travail"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="startDateEmploymentContract"  editorType="dxDateBox" displayFormat="dd/MM/yyyy"
+      type="date" [editorOptions]="{ value: null, width: '100%' }">
+       <dxo-label text="Date Début de contrat"></dxo-label>
+     </dxi-item>
+     <dxi-item dataField="endDateEmploymentContract"  editorType="dxDateBox" displayFormat="dd/MM/yyyy"
+      type="date" [editorOptions]="{ value: null, width: '100%' }">
+       <dxo-label text="Date de fin de contrat"></dxo-label>
+     </dxi-item>
+      <dxi-item dataField="annexEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Annexe Contrat"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="pointsSeniorityEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Point de séniorité"></dxo-label>
+      </dxi-item>
+      <dxi-item dataField="complementaryPointsEmploymentContract" [editorOptions]="{disabled : false}">
+        <dxo-label text="Point Complémetaire du contrat"></dxo-label>
+      </dxi-item>
+     
+    </dxo-form>
+  </dxo-editing>
+  <dxi-column dataField="code_employment_contract" caption="Code Contrat Emploi"></dxi-column>
+  
+  <dxi-column dataField="stateEmploymentContract" caption="Etat Contrat">
+                <dxo-lookup  [dataSource]="stateEmploymentContract">
+                </dxo-lookup>
+   </dxi-column>
+  <dxi-column dataField="statusEmploymentContract" caption="Status de contrat">
+    <dxo-lookup  [dataSource]="statusEmploymentContract">
+    </dxo-lookup>
+</dxi-column>
+  <dxi-column dataField="noteEmploymentContract" caption="Note Emploi"></dxi-column>
+ 
+  <dxi-column dataField="typeEmploymentContract" caption="Type Contrat">
+    <dxo-lookup  [dataSource]="typeEmploymentContract">
+    </dxo-lookup>
+</dxi-column>
+
+  <dxi-column dataField="workTimeEmploymentContract" caption="Temps de travail">
+    <dxo-lookup  [dataSource]="workTimeEmploymentContract">
+    </dxo-lookup>
+</dxi-column>
+  <dxi-column dataField="startDateEmploymentContract" dataType="date" caption="Date Début de contrat"></dxi-column>
+  <dxi-column dataField="endDateEmploymentContract" dataType="date" caption="Date de fin de contrat"></dxi-column>
+  
+  <dxi-column dataField="annexEmploymentContract" caption="Annexe Contrat">
+    <dxo-lookup  [dataSource]="annexEmploymentContract">
+    </dxo-lookup>
+</dxi-column>
+  <dxi-column dataField="pointsSeniorityEmploymentContract" caption="Point de séniorité"></dxi-column>
+  <dxi-column dataField="complementaryPointsEmploymentContract" caption="Point Complémetaire du contrat"></dxi-column>
+ 
+</dx-data-grid>
+

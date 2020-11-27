@@ -1,0 +1,76 @@
+
+<!-- <mat-drawer-container  *ngIf="isLoggedIn; else loggedOut" class="container" autosize>
+    <mat-drawer #drawer class="sidenav" >
+        <button color="primary" mat-button routerLink="/pm">Budgets</button>
+
+    </mat-drawer>
+    <div class="sidenav-content">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)= "drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+
+            </button>
+
+
+            <span class="spacer"></span>
+            <mat-icon>favorite</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-container> -->
+
+  <div class="example-container" *ngIf="isLoggedIn">
+    <mat-toolbar class="example-toolbar">
+      <mat-icon style="transform: scale(2.7);padding-left: 4px;" (click)="isExpanded = !isExpanded" svgIcon="{{menu1}}"></mat-icon>
+      <span class="example-fill-remaining-space"></span>
+      <img src="../../assets/icons/cloche.png" class="btna" routerLink="/listAlert" alt="" *ngIf="show">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon style="transform: scale(2.7);padding-top: 3px;" svgIcon="{{home}}" mat-list-icon> account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+              Mon compte
+          </button>
+          <button mat-menu-item>
+              Paramètres
+          </button>
+          <button mat-menu-item>
+              <mat-icon routerLink="/" (click)="logout()">logout</mat-icon>
+          </button>
+      </mat-menu>
+      <!-- <mat-icon>logout</mat-icon> -->
+		</mat-toolbar>
+	<mat-sidenav-container  class="example-sidenav-container" autosize style="padding: 0px; background-color: #efefef;">
+		<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" style="padding: 0px">
+			<mat-nav-list class="dashboard" style="padding: 0px">
+        <mat-list-item style="padding: 0px">
+          <a  mat-list-item (click)="toggleActive(event)">
+            <div style="display: flex">
+              <a routerLink="/listWorker">
+                <img src="../../assets/icons/formation.png" class="row_module_index" style="width: 40px"  alt="Resource Humaines">
+                <h5 *ngIf="isExpanded" class="special">Ressource Humaines</h5>
+                <h5 style="text-align: center;" *ngIf="!isExpanded"><b >RH</b></h5>
+
+
+              </a>
+
+            </div>
+
+          </a>
+
+        </mat-list-item>
+<br>
+
+        <!-- <a  *ngIf="authority === 'user'  || authority === 'admin'" mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon *ngIf="!isExpanded">inbox</mat-icon>
+          <p matLine *ngIf="isExpanded">Mes Projets</p>
+        </a> -->
+			</mat-nav-list>
+		</mat-sidenav>
+    <ng-content></ng-content>
+  </mat-sidenav-container>
+</div>
