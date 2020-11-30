@@ -1,24 +1,27 @@
 import { Workers } from "./Workers";
 
 export class EmploymentContract {
+
   idEmploymentContract: number;
+
+  formContract:string;
   code_employment_contract: string;
+
   stateEmploymentContract: string;
   statusEmploymentContract: string;
-  noteEmploymentContract: string;
-
   typeEmploymentContract: string;
   workTimeEmploymentContract: string;
   startDateEmploymentContract: Date;
   endDateEmploymentContract: Date;
-
   pointsSeniorityEmploymentContract: number;
   complementaryPointsEmploymentContract: number;
+
+  noteEmploymentContract: string;
+
 
   worker: number;
 
   pointBase: number;
-  formContract:string;
 
   contractAnnexation:EmploymentContract;
 

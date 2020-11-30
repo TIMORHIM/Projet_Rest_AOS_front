@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ContractService {
-  private url = environment.ROOT + '/api/add/employmentContract';
+  private url = environment.ROOT + '/api/employmentContract';
   private contratPUTurl = environment.ROOT + '/api/employmentContract';
   private getByWorkerURL = environment.ROOT + '/api/employmentContract/getByWorker';
   private getMailSend = environment.ROOT + '/api/sendValidMail';

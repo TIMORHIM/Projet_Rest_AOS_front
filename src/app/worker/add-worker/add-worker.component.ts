@@ -71,12 +71,9 @@ export class AddWorkerComponent implements OnInit {
     this.adress = new Address();
 
     this.medicalVisits = [];
-    //this.afficheNat = this.afficheNat.bind(this);
 
-  this.bankDetails = new BankDetails();
-  //this.interview = new Interviews();
+    this.bankDetails = new BankDetails();
     this.employmentContract = new EmploymentContract();
-    //this.nationalityChanged =  this.nationalityChanged.bind(this);
     this.codePostalCustom =  this.codePostalCustom.bind(this);
     this.nationalityChanged = this.nationalityChanged.bind(this);
 
@@ -172,6 +169,7 @@ export class AddWorkerComponent implements OnInit {
       'Avenant'
     ];
 
+    console.log("heeeelllooodsj", this.employmentContract);
 
    }
 
@@ -214,8 +212,6 @@ export class AddWorkerComponent implements OnInit {
         this.matricule = this.matricule.toUpperCase();
         console.log(this.matricule);
       }
-      console.log(this.matricule);
-
           if(this.selectNationality){
             this.worker.nationalityWorker = 'Autre';
           }
@@ -233,12 +229,14 @@ export class AddWorkerComponent implements OnInit {
           this.workerService.addWorker(this.worker).subscribe(worker => {
             this.adress.worker = worker.idPerson;
             this.addressService.addAdress(this.adress).subscribe(address => {
-              console.log(address);
+              console.log("address : ",address);
               worker.address = address;
+              console.log("worker : ", worker);
                 this.bankDetails.worker = worker.idPerson;
                 this.bankDetailsService.addBankDetail(this.bankDetails).subscribe(bankDetail => {
                   console.log(bankDetail);
                   worker.bankDetails = bankDetail;
+                  console.log("worker apres bank details : ", worker);
                   this.workerService.updateWorker(worker).subscribe(w => {
                     if(this.employmentContract == null)
                       this.ngZone.run(() => this.router.navigate(['listWorker']));
@@ -330,7 +328,7 @@ export class AddWorkerComponent implements OnInit {
 
         }
       );
-
+    console.log("hihi", this.employmentContract);
     this.employmentContract = new EmploymentContract();
     }
 

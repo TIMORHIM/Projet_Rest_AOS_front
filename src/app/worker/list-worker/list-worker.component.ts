@@ -29,14 +29,22 @@ export class ListWorkerComponent implements OnInit {
     this.workerService.getWorkers().subscribe(workers => {
 
       workers.forEach( (worker :any)=>{
+        console.log(worker);
         if(worker.employmentContract == null ){
           worker.Startdate = null;
+          worker.enddate = null;
+          worker.type = null;
           worker.statusP = 0;
-          this.workers.push(worker);
         }else {
-          worker.employmentContract = worker.employmentContract;
+          worker.Startdate = worker.employmentContract.startDateEmploymentContract;
+          worker.enddate = worker.employmentContract.endDateEmploymentContract;
+          worker.type = worker.employmentContract.typeEmploymentContract;
+          if (worker.employmentContract.statusEmploymentContract == 'Brouillon')
+            worker.statusP = 0;
+          else if (worker.employmentContract.statusEmploymentContract == 'En_cours')
+            worker.statusP = 60;
         }
-        console.log("hahaha"+this.workers);
+        this.workers.push(worker);
       });
     });
   }
